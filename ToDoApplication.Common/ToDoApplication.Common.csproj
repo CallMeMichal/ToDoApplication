@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Domain\Response\" />
-    <Folder Include="Models\DTO\" />
-  </ItemGroup>
-
 </Project>

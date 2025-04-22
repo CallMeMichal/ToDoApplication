@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Net;
-using System.Threading.Tasks;
-using ToDoApplication.Application.Service;
 using ToDoApplication.Common.Interfaces;
+using ToDoApplication.Common.Models.Domain.Request;
+using ToDoApplication.Common.Models.Domain.Response;
 
 namespace ToDoApplication.Api.Controllers
 {
@@ -14,11 +13,11 @@ namespace ToDoApplication.Api.Controllers
     [Route("api/v1/[controller]")]
     public class ToDoController : Controller
     {
-        private readonly IToDoService _iToDoService;
+        private readonly IToDoService _IToDoService;
 
         public ToDoController(IToDoService iToDoService)
         {
-            _iToDoService = iToDoService;
+            _IToDoService = iToDoService;
         }
 
         /// <summary>
@@ -27,10 +26,10 @@ namespace ToDoApplication.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> GetAllTodos()
+        public async Task<List<GetAllTodosResponse>> GetAllTodos()
         {
-            var todos = await _iToDoService.GetAllTodos();
-            return Ok(todos);
+            var response = await _IToDoService.GetAllTodos();
+            return response;
         }
 
         /// <summary>
@@ -39,8 +38,10 @@ namespace ToDoApplication.Api.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task GetTodoById(int id)
+        public async Task<GetTodoByIdResponse> GetTodoById(int id)
         {
+            var response = await _IToDoService.GetTodoById(id);
+            return response;
         }
 
         /// <summary>
@@ -48,33 +49,48 @@ namespace ToDoApplication.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("incoming")]
-        public async Task GetIncomingTodos()
+        public async Task<List<GetIncomingTodosResponse>> GetIncomingTodos(DateTime dateTime)
         {
+            var response = await _IToDoService.GetIncomingTodos();
+            return response;
         }
+
 
         /// <summary>
         /// Create todo
         /// </summary>
+        /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
         [Route("")]
-        public async Task CreateTodo()
+        public async Task<ApiResponse> CreateTodo(CreateTodoRequest request)
         {
+            var response = await _IToDoService.CreateTodo(request);
+            return response;
         }
 
         /// <summary>
         /// Update todo
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public async Task UpdateTodo(int id)
+        public async Task<ApiResponse> UpdateTodo(UpdateTodoRequest request)
         {
+            var response = await _IToDoService.UpdateTodo(request);
+            return response;
         }
 
+        /// <summary>
+        /// Change Complete Percent of Todo
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPatch("{id}/percent")]
-        public async Task SetTodoPercent(int id /*[FromBody] PercentUpdateModel percentModel*/)
+        public async Task<ApiResponse> SetTodoPercent(int id)
         {
+            var response = await _IToDoService.SetTodoPercent(id);
+            return response;
         }
 
         /// <summary>
@@ -83,8 +99,10 @@ namespace ToDoApplication.Api.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public async Task DeleteTodo(int id)
+        public async Task<ApiResponse> DeleteTodo(int id)
         {
+            var response = await _IToDoService.DeleteTodo(id);
+            return response;
         }
 
         /// <summary>
@@ -93,8 +111,10 @@ namespace ToDoApplication.Api.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPut("{id}/done")]
-        public async Task MarkDoneTodo(int id)
+        public async Task<ApiResponse> MarkDoneTodo(int id)
         {
+            var response =  await _IToDoService.MarkDoneTodo(id);
+            return response;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ToDoApplication.Common.Interfaces;
 using ToDoApplication.Common.Models.Database;
+using ToDoApplication.Common.Models.DTO;
 using ToDoApplication.Infrastructure.Context;
 
 namespace ToDoApplication.Infrastructure.Repositories
@@ -14,43 +15,83 @@ namespace ToDoApplication.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<List<TodoItem>> GetAllAsync()
+        public async Task<List<CreateTodoDTO>> GetAllAsync()
         {
+            var todos = await _context.TodoItem.ToListAsync();
+            var todosDto = new List<CreateTodoDTO>();
+            foreach (var todo in todos)
+            {
+                var createTodoDTO = new CreateTodoDTO
+                {
+                    Title = todo.Title,
+                    Description = todo.Description,
+                    ExpirationDate = todo.ExpirationDate,
+                    CompletePercent = todo.CompletePercent,
+                };
+                todosDto.Add(createTodoDTO);
+            }
 
-            return await _context.TodoItem.ToListAsync();
+            return todosDto;
         }
         public async Task<TodoItem> GetTodoById(int id)
         {
             return await _context.TodoItem.FirstOrDefaultAsync(x=>x.Id == id);
         }
-/*        public async Task<TodoItem> GetTodoByTime(DateTime time, bool isRange)
-        {
-            throw new NotImplementedException();
-            return null;*//*await _context.TodoItems.FirstOrDefaultAsync(x => x.Id == id);*//*
-        }*/
 
         public async Task<List<TodoItem>> GetIncomingTodos()
         {
             return await _context.TodoItem.Where(x => x.ExpirationDate > DateTime.Now).ToListAsync();
         }
 
-        public async Task<TodoItem> CreateTodo(TodoItem todo)
+        public async Task<bool> CreateTodo(CreateTodoDTO createTodoDTO)
         {
-            await _context.TodoItem.AddAsync(todo);
-            await _context.SaveChangesAsync();
-            return todo;
+            var todo = new TodoItem
+            {
+                Title = createTodoDTO.Title,
+                Description = createTodoDTO.Description,
+                ExpirationDate = createTodoDTO.ExpirationDate,
+                CompletePercent = createTodoDTO.CompletePercent,
+            };
+
+            try
+            {
+                await _context.TodoItem.AddAsync(todo);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public async Task<TodoItem> UpdateTodo(TodoItem todo)
+        public async Task<bool> UpdateTodo(TodoItem todo)
         {
-            _context.TodoItem.Update(todo);
-            await _context.SaveChangesAsync();
-            return todo;
+            try
+            {
+                _context.TodoItem.Update(todo);
+                await _context.SaveChangesAsync();
+                return true;
+            }catch(Exception)
+            {
+                return false;
+            }
         }
 
-        public async Task SetTodoPercent()
+        public async Task<bool> SetTodoPercent(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var todo = await _context.TodoItem.FirstOrDefaultAsync(x => x.Id == id);
+                todo.CompletePercent = 100;
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+
+            }
         }
 
 
@@ -64,9 +105,14 @@ namespace ToDoApplication.Infrastructure.Repositories
             return true;
         }
 
-        public async Task MarkTodoAsCompleted()
+        public async Task<bool> MarkTodoAsCompleted(int id)
         {
-            throw new NotImplementedException();
+            var todo = await _context.TodoItem.FirstOrDefaultAsync(x => x.Id == id);
+            if (todo == null)
+                return false;
+            todo.CompletePercent = 100;
+            await _context.SaveChangesAsync();
+            return true;
         }
 
     }
