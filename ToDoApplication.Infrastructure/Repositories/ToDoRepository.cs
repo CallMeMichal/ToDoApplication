@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ToDoApplication.Common.Interfaces;
 using ToDoApplication.Common.Models.Database;
 using ToDoApplication.Infrastructure.Context;
 
 namespace ToDoApplication.Infrastructure.Repositories
 {
-    public class ToDoRepository
+    public class ToDoRepository : IToDoRepostiory
     {
         private readonly AppDbContext _context;
 
@@ -15,11 +16,12 @@ namespace ToDoApplication.Infrastructure.Repositories
 
         public async Task<List<TodoItem>> GetAllAsync()
         {
-            return await _context.TodoItems.ToListAsync();
+
+            return await _context.TodoItem.ToListAsync();
         }
         public async Task<TodoItem> GetTodoById(int id)
         {
-            return await _context.TodoItems.FirstOrDefaultAsync(x=>x.Id == id);
+            return await _context.TodoItem.FirstOrDefaultAsync(x=>x.Id == id);
         }
 /*        public async Task<TodoItem> GetTodoByTime(DateTime time, bool isRange)
         {
@@ -29,19 +31,19 @@ namespace ToDoApplication.Infrastructure.Repositories
 
         public async Task<List<TodoItem>> GetIncomingTodos()
         {
-            return await _context.TodoItems.Where(x => x.ExpirationDate > DateTime.Now).ToListAsync();
+            return await _context.TodoItem.Where(x => x.ExpirationDate > DateTime.Now).ToListAsync();
         }
 
         public async Task<TodoItem> CreateTodo(TodoItem todo)
         {
-            await _context.TodoItems.AddAsync(todo);
+            await _context.TodoItem.AddAsync(todo);
             await _context.SaveChangesAsync();
             return todo;
         }
 
         public async Task<TodoItem> UpdateTodo(TodoItem todo)
         {
-            _context.TodoItems.Update(todo);
+            _context.TodoItem.Update(todo);
             await _context.SaveChangesAsync();
             return todo;
         }
@@ -54,10 +56,10 @@ namespace ToDoApplication.Infrastructure.Repositories
 
         public async Task<bool> DeleteTodo(int id)
         {
-            var todo = await _context.TodoItems.FirstOrDefaultAsync(x => x.Id == id);
+            var todo = await _context.TodoItem.FirstOrDefaultAsync(x => x.Id == id);
             if (todo == null)
                 return false;
-            _context.TodoItems.Remove(todo);
+            _context.TodoItem.Remove(todo);
             await _context.SaveChangesAsync();
             return true;
         }

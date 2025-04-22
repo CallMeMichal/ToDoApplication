@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using System.Threading.Tasks;
 using ToDoApplication.Application.Service;
+using ToDoApplication.Common.Interfaces;
 
 namespace ToDoApplication.Api.Controllers
 {
@@ -12,14 +14,12 @@ namespace ToDoApplication.Api.Controllers
     [Route("api/v1/[controller]")]
     public class ToDoController : Controller
     {
-        private readonly ToDoService _toDoService;
+        private readonly IToDoService _iToDoService;
 
-        public ToDoController(ToDoService toDoService)
+        public ToDoController(IToDoService iToDoService)
         {
-            _toDoService = toDoService;
+            _iToDoService = iToDoService;
         }
-
-
 
         /// <summary>
         /// Get all todos
@@ -27,9 +27,10 @@ namespace ToDoApplication.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("")]
-        public async Task GetAllTodos()
+        public async Task<IActionResult> GetAllTodos()
         {
-            
+            var todos = await _iToDoService.GetAllTodos();
+            return Ok(todos);
         }
 
         /// <summary>

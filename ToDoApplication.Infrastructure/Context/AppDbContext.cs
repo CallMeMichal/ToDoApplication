@@ -9,6 +9,6 @@ namespace ToDoApplication.Infrastructure.Context
         {
             Database.SetCommandTimeout(TimeSpan.FromSeconds(60));
         }
-        public DbSet<TodoItem> TodoItems { get; set; }
+        public DbSet<TodoItem> TodoItem { get; set; }
     }
 }
