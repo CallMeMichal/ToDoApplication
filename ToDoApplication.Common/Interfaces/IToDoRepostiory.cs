@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ToDoApplication.Common.Models.Database;
 
 namespace ToDoApplication.Common.Interfaces
 {
-    interface IToDoRepostiory
+    public interface IToDoRepostiory
     {
+        Task<List<TodoItem>> GetAllAsync();
+        Task<List<TodoItem>> GetIncomingTodos();
+        Task<TodoItem> GetTodoById(int id);
     }
 }

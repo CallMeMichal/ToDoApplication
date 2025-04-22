@@ -1,6 +1,9 @@
-﻿namespace ToDoApplication.Common.Interfaces
+﻿using ToDoApplication.Common.Models.Database;
+
+namespace ToDoApplication.Common.Interfaces
 {
-    interface IToDoService
+    public interface IToDoService
     {
+        Task<List<TodoItem>> GetAllTodos();
     }
 }
