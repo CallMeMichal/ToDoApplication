@@ -24,4 +24,8 @@
     <ProjectReference Include="..\ToDoApplication.Common\ToDoApplication.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Database\" />
+  </ItemGroup>
+
 </Project>
