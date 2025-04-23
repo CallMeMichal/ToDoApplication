@@ -1,0 +1,1 @@
+docker pull michaltulej/todoapplicationapi:latest
