@@ -10,9 +10,9 @@ namespace ToDoApplication.Application.Service
 {
     public class ToDoService : IToDoService
     {
-        private readonly IToDoRepostiory _toDoRepository;
+        private readonly IToDoRepository _toDoRepository;
 
-        public ToDoService(IToDoRepostiory toDoRepository)
+        public ToDoService(IToDoRepository toDoRepository)
         {
             _toDoRepository = toDoRepository;
         }

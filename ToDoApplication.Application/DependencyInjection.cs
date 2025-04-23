@@ -9,7 +9,7 @@ namespace ToDoApplication.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<IToDoRepostiory,ToDoRepository>();
+            services.AddScoped<IToDoRepository,ToDoRepository>();
             services.AddScoped<IToDoService,ToDoService>();
             return services;
         }
