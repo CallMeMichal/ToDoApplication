@@ -70,7 +70,7 @@ namespace ToDoApplication.Api.Controllers
             _logger.LogInformation("GetIncomingTodos START: " + dateTime);
             var result = ValidatorHelper.ValidateRequest(dateTime, new GetIncomingTodosValidator());
 
-            if (result != null)
+            if (result.isSuccess.Equals(false))
             {
                 _logger.LogError($"Response Error: {JsonSerializer.Serialize(result)}");
                 return BadRequest(result);

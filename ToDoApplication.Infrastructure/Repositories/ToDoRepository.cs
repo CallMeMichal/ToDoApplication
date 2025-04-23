@@ -110,7 +110,11 @@ namespace ToDoApplication.Infrastructure.Repositories
             try
             {
                 var todo = await _context.TodoItem.FirstOrDefaultAsync(x => x.Id == id);
-                todo.CompletePercent = amount;
+                if (todo != null)
+                {
+                    todo.CompletePercent = amount;
+                }
+                
                 await _context.SaveChangesAsync();
                 return true;
             }

@@ -35,7 +35,13 @@ namespace ToDoApplication.Api.Helpers
                 };
             }
 
-            return null;
+            return new ApiResponse
+            {
+                StatusCode = HttpStatusCode.OK,
+                isSuccess = true,
+                Message = "Validation succeeded",
+                Errors = null
+            };
         }
     }
 }
