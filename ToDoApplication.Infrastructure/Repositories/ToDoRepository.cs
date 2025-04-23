@@ -6,7 +6,7 @@ using ToDoApplication.Infrastructure.Context;
 
 namespace ToDoApplication.Infrastructure.Repositories
 {
-    public class ToDoRepository : IToDoRepostiory
+    public class ToDoRepository : IToDoRepository
     {
         private readonly AppDbContext _context;
 
@@ -33,15 +33,41 @@ namespace ToDoApplication.Infrastructure.Repositories
 
             return todosDto;
         }
-        public async Task<TodoItem> GetTodoById(int id)
+        public async Task<GetTodoById?> GetTodoById(int id)
         {
+            var todo = await _context.TodoItem.FirstOrDefaultAsync(x => x.Id == id);
 
-            return await _context.TodoItem.FirstOrDefaultAsync(x => x.Id == id);
+            if (todo == null)
+                return null;
+
+            return new GetTodoById
+            {
+                CompletePercent = todo.CompletePercent,
+                Description = todo.Description,
+                ExpirationDate = todo.ExpirationDate,
+                Title = todo.Title
+            };
         }
 
-        public async Task<List<TodoItem>> GetIncomingTodos()
+
+        public async Task<List<GetIncomingTodosDTO>> GetIncomingTodos()
         {
-            return await _context.TodoItem.Where(x => x.ExpirationDate > DateTime.Now).ToListAsync();
+            var todoList = await _context.TodoItem.Where(x => x.ExpirationDate > DateTime.Now).ToListAsync();
+            var incomingTodos = new List<GetIncomingTodosDTO>();
+
+            foreach(var todo in todoList)
+            {
+                var incomingTodo = new GetIncomingTodosDTO
+                {
+                    Title = todo.Title,
+                    Description = todo.Description,
+                    ExpirationDate = todo.ExpirationDate,
+                    CompletePercent = todo.CompletePercent
+                };
+                incomingTodos.Add(incomingTodo);
+            }
+
+            return incomingTodos;
         }
 
         public async Task<bool> CreateTodo(CreateTodoDTO createTodoDTO)
