@@ -17,7 +17,6 @@ namespace ToDoApplication.Application.Service
             _toDoRepository = toDoRepository;
         }
 
-        //zrobione ewentulanie dodać obsługe błedów
         public async Task<List<GetAllTodosResponse>> GetAllTodos()
         {
             var todos = await _toDoRepository.GetAllAsync();
@@ -74,40 +73,6 @@ namespace ToDoApplication.Application.Service
 
         public async Task<ApiResponse> CreateTodo(CreateTodoRequest request)
         {
-            // Empty Date Validation
-            if (request.ExpirationDate == default(DateTime))
-            {
-                return ToDoHelpers.CreateResponse(false, "Expiration date cannot be empty", HttpStatusCode.BadRequest);
-            }
-
-            // Data in the future validation
-            if (request.ExpirationDate <= DateTime.Now)
-            {
-                return ToDoHelpers.CreateResponse(false, "Expiration date must be greater than current date", HttpStatusCode.BadRequest);
-            }
-
-            // Too far date validation
-            if (request.ExpirationDate > DateTime.Now.AddYears(1))
-            {
-                return ToDoHelpers.CreateResponse(false, "Expiration date cannot be more than one year in the future", HttpStatusCode.BadRequest);
-            }
-
-            // Weekend Validation :)
-            if (request.ExpirationDate.DayOfWeek == DayOfWeek.Saturday || request.ExpirationDate.DayOfWeek == DayOfWeek.Sunday)
-            {
-                return ToDoHelpers.CreateResponse(false, "Expiration date cannot be set to a weekend", HttpStatusCode.BadRequest);
-            }
-
-            // Working Hours validation
-            TimeSpan workDayStart = new TimeSpan(8, 0, 0);
-            TimeSpan workDayEnd = new TimeSpan(18, 0, 0);
-            TimeSpan expirationTime = request.ExpirationDate.TimeOfDay;
-
-            if (expirationTime < workDayStart || expirationTime > workDayEnd)
-            {
-                return ToDoHelpers.CreateResponse(false, "Expiration time must be between 8:00 AM and 6:00 PM", HttpStatusCode.BadRequest);
-            }
-
             CreateTodoDTO createTodoDTO = new CreateTodoDTO
             {
                 Title = request.Title,
@@ -149,9 +114,9 @@ namespace ToDoApplication.Application.Service
                 return ToDoHelpers.CreateResponse(response, "Failed to update todo", HttpStatusCode.InternalServerError);
             }
         }
-        public async Task<ApiResponse> SetTodoPercent(int id)
+        public async Task<ApiResponse> SetTodoPercent(int id, int amount)
         {
-            var result = await _toDoRepository.SetTodoPercent(id);
+            var result = await _toDoRepository.SetTodoPercent(id,amount);
 
             if(result)
             {
