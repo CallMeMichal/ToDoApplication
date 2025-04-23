@@ -1,0 +1,19 @@
+﻿version: '3.8'
+services:
+  db:
+    image: michaltulej/todoapplicationdb:latest
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=ToDo@App123
+
+  api:
+    image: michaltulej/todoapplicationapi:latest
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db,1433;Database=ToDoApplicationDatabase;User Id=sa;Password=ToDo@App123;TrustServerCertificate=True;
