@@ -35,7 +35,8 @@ namespace ToDoApplication.Infrastructure.Repositories
         }
         public async Task<TodoItem> GetTodoById(int id)
         {
-            return await _context.TodoItem.FirstOrDefaultAsync(x=>x.Id == id);
+
+            return await _context.TodoItem.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<List<TodoItem>> GetIncomingTodos()
@@ -78,12 +79,12 @@ namespace ToDoApplication.Infrastructure.Repositories
             }
         }
 
-        public async Task<bool> SetTodoPercent(int id)
+        public async Task<bool> SetTodoPercent(int id, int amount)
         {
             try
             {
                 var todo = await _context.TodoItem.FirstOrDefaultAsync(x => x.Id == id);
-                todo.CompletePercent = 100;
+                todo.CompletePercent = amount;
                 await _context.SaveChangesAsync();
                 return true;
             }

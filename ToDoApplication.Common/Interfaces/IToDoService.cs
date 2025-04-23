@@ -12,7 +12,7 @@ namespace ToDoApplication.Common.Interfaces
         Task<List<GetIncomingTodosResponse>> GetIncomingTodos();
         Task<GetTodoByIdResponse> GetTodoById(int id);
         Task<ApiResponse> MarkDoneTodo(int id);
-        Task<ApiResponse> SetTodoPercent(int id);
+        Task<ApiResponse> SetTodoPercent(int id, int amount);
         Task<ApiResponse> UpdateTodo(UpdateTodoRequest request);
     }
 }

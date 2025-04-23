@@ -10,7 +10,7 @@ namespace ToDoApplication.Common.Interfaces
         Task<List<TodoItem>> GetIncomingTodos();
         Task<bool> CreateTodo(CreateTodoDTO createTodoDTO);
         Task<bool> UpdateTodo(TodoItem todo);
-        Task<bool> SetTodoPercent(int id);
+        Task<bool> SetTodoPercent(int id, int amount);
         Task<bool> DeleteTodo(int id);
         Task<bool> MarkTodoAsCompleted(int id);
     }
