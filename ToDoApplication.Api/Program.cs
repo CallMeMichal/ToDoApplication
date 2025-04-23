@@ -1,4 +1,5 @@
 using Microsoft.OpenApi.Models;
+using NLog.Web;
 using System.Reflection;
 using ToDoApplication.Application;
 using ToDoApplication.Infrastructure;
@@ -10,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-
+builder.Host.UseNLog();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
