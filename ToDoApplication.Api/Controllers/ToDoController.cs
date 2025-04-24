@@ -94,7 +94,7 @@ namespace ToDoApplication.Api.Controllers
             _logger.LogInformation($"CreateTodo START: {JsonSerializer.Serialize(request)}");
             var result = ValidatorHelper.ValidateRequest(request, new CreateTodoValidator());
 
-            if (result != null)
+            if (result.isSuccess.Equals(false))
             {
                 _logger.LogError($"Response Error: {JsonSerializer.Serialize(result)}");
                 return result;
@@ -115,7 +115,7 @@ namespace ToDoApplication.Api.Controllers
             _logger.LogInformation($"UpdateTodo START: {JsonSerializer.Serialize(request)}");
             var result = ValidatorHelper.ValidateRequest(request, new UpdateTodoValidator());
 
-            if (result != null)
+            if (result.isSuccess.Equals(false))
             {
                 _logger.LogError($"Response Error: {JsonSerializer.Serialize(result)}");
                 return result;
@@ -137,7 +137,7 @@ namespace ToDoApplication.Api.Controllers
         {
             _logger.LogInformation($"SetTodoPercent START: id:{id},percent:{amount}");
             var result = ValidatorHelper.ValidateRequest(amount, new SetTodoPercentValidator());
-            if (result != null)
+            if (result.isSuccess.Equals(false))
             {
                 _logger.LogError($"Response Error: {JsonSerializer.Serialize(result)}");
                 return result;
