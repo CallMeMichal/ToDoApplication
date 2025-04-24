@@ -108,7 +108,6 @@ namespace ToDoApplication.Api.Controllers
         /// <summary>
         /// Update todo
         /// </summary>
-        /// <param name="id"></param>
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPut("update")]
