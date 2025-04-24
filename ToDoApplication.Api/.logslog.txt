@@ -73,3 +73,33 @@
 2025-04-24 14:54:59.8217 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
 2025-04-24 14:54:59.8361 Info Validating config: TargetNames=web, allfile, ConfigItems=46, FilePath=/app/nlog.config
 2025-04-24 14:54:59.8444 Info Configuration initialized.
+2025-04-24 14:57:20.1895 Info Registered target NLog.Targets.FileTarget(Name=web)
+2025-04-24 14:57:20.1960 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-04-24 14:57:20.1960 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-24 14:57:20.2092 Info Validating config: TargetNames=web, allfile, ConfigItems=46, FilePath=/app/nlog.config
+2025-04-24 14:57:20.2162 Info Configuration initialized.
+2025-04-24 15:03:38.0408 Info Registered target NLog.Targets.FileTarget(Name=web)
+2025-04-24 15:03:38.0408 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-04-24 15:03:38.0509 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-24 15:03:38.0604 Info Validating config: TargetNames=web, allfile, ConfigItems=46, FilePath=/app/nlog.config
+2025-04-24 15:03:38.0604 Info Configuration initialized.
+2025-04-24 15:23:27.4416 Info Registered target NLog.Targets.FileTarget(Name=web)
+2025-04-24 15:23:27.4482 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-04-24 15:23:27.4482 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-24 15:23:27.4610 Info Validating config: TargetNames=web, allfile, ConfigItems=46, FilePath=/app/nlog.config
+2025-04-24 15:23:27.4681 Info Configuration initialized.
+2025-04-24 15:23:50.7950 Info Registered target NLog.Targets.FileTarget(Name=web)
+2025-04-24 15:23:50.8007 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-04-24 15:23:50.8007 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-24 15:23:50.8137 Info Validating config: TargetNames=web, allfile, ConfigItems=46, FilePath=/app/nlog.config
+2025-04-24 15:23:50.8218 Info Configuration initialized.
+2025-04-24 15:25:46.7479 Info Registered target NLog.Targets.FileTarget(Name=web)
+2025-04-24 15:25:46.7540 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-04-24 15:25:46.7540 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-24 15:25:46.7669 Info Validating config: TargetNames=web, allfile, ConfigItems=46, FilePath=/app/nlog.config
+2025-04-24 15:25:46.7748 Info Configuration initialized.
+2025-04-24 15:28:15.2162 Info Registered target NLog.Targets.FileTarget(Name=web)
+2025-04-24 15:28:15.2227 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-04-24 15:28:15.2227 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-04-24 15:28:15.2372 Info Validating config: TargetNames=web, allfile, ConfigItems=46, FilePath=/app/nlog.config
+2025-04-24 15:28:15.2455 Info Configuration initialized.
