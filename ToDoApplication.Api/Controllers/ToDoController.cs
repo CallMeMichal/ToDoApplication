@@ -107,9 +107,10 @@ namespace ToDoApplication.Api.Controllers
         /// <summary>
         /// Update todo
         /// </summary>
+        /// <param name="id"></param>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpPut("{id}")]
+        [HttpPut("update")]
         public async Task<ApiResponse> UpdateTodo(UpdateTodoRequest request)
         {
             _logger.LogInformation($"UpdateTodo START: {JsonSerializer.Serialize(request)}");
