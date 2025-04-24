@@ -3,10 +3,9 @@ How to open
 Visual Studio
 tools -> command line => develop powershell
 
-change folder to cd ex. cd C:\Users\Michal\source\repos\ToDoApplication\ToDoApplication.Api
+change folder to cd ex. : cd C:\Users\Michal\source\repos\ToDoApplication\ToDoApplication.Api
 
-type
-docker-compose up --build
+type in powershell prompt : docker-compose up --build
 
 Database will be empty of records
 
