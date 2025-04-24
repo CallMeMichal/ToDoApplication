@@ -128,6 +128,7 @@ namespace ToDoApplication.Application.Service
         {
             var todo = new TodoItem
             {
+                Id = request.Id,
                 Title = request.Title,
                 Description = request.Description,
                 ExpirationDate = request.ExpirationDate,
