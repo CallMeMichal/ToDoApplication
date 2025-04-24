@@ -15,6 +15,13 @@ change folder to cd ex. : cd C:\Users\Michal\source\repos\ToDoApplication\ToDoAp
 
 type in powershell prompt : docker-compose up --build
 
+
+
+Application should work properly.
+
+
+
+
 Database will be empty of records
 
 database image: docker pull michaltulej/todoapplicationdb:latest
