@@ -15,6 +15,10 @@ namespace ToDoApplication.Infrastructure.Repositories
             _context = context;
         }
 
+        /// <summary>
+        /// Get all todos
+        /// </summary>
+        /// <returns>list todos</returns>
         public async Task<List<CreateTodoDTO>> GetAllAsync()
         {
             var todos = await _context.TodoItem.ToListAsync();
@@ -33,6 +37,12 @@ namespace ToDoApplication.Infrastructure.Repositories
 
             return todosDto;
         }
+
+        /// <summary>
+        /// Get todo by id
+        /// </summary>
+        /// <param name="id">todo id</param>
+        /// <returns>specified todo</returns>
         public async Task<GetTodoById?> GetTodoById(int id)
         {
             var todo = await _context.TodoItem.FirstOrDefaultAsync(x => x.Id == id);
@@ -49,7 +59,10 @@ namespace ToDoApplication.Infrastructure.Repositories
             };
         }
 
-
+        /// <summary>
+        /// Get all incoming todos
+        /// </summary>
+        /// <returns>list incoming todos</returns>
         public async Task<List<GetIncomingTodosDTO>> GetIncomingTodos()
         {
             var todoList = await _context.TodoItem.Where(x => x.ExpirationDate > DateTime.Now).ToListAsync();
@@ -70,6 +83,11 @@ namespace ToDoApplication.Infrastructure.Repositories
             return incomingTodos;
         }
 
+        /// <summary>
+        /// Create todo
+        /// </summary>
+        /// <param name="createTodoDTO"></param>
+        /// <returns>if find true, otherwise false</returns>
         public async Task<bool> CreateTodo(CreateTodoDTO createTodoDTO)
         {
             var todo = new TodoItem
@@ -92,6 +110,11 @@ namespace ToDoApplication.Infrastructure.Repositories
             }
         }
 
+        /// <summary>
+        /// Update todo
+        /// </summary>
+        /// <param name="todo">todo database model</param>
+        /// <returns>if find true, otherwise false</returns>
         public async Task<bool> UpdateTodo(TodoItem todo)
         {
             try
@@ -105,6 +128,12 @@ namespace ToDoApplication.Infrastructure.Repositories
             }
         }
 
+        /// <summary>
+        /// Set todo percent
+        /// </summary>
+        /// <param name="id">specified id todo</param>
+        /// <param name="amount">percent amount todo</param>
+        /// <returns>if find true, otherwise false</returns>
         public async Task<bool> SetTodoPercent(int id, int amount)
         {
             try
@@ -125,7 +154,11 @@ namespace ToDoApplication.Infrastructure.Repositories
             }
         }
 
-
+        /// <summary>
+        /// Delete todo
+        /// </summary>
+        /// <param name="id">specified id</param>
+        /// <returns>if find true, otherwise false</returns>
         public async Task<bool> DeleteTodo(int id)
         {
             var todo = await _context.TodoItem.FirstOrDefaultAsync(x => x.Id == id);
@@ -136,6 +169,11 @@ namespace ToDoApplication.Infrastructure.Repositories
             return true;
         }
 
+        /// <summary>
+        /// Mark todo as completed
+        /// </summary>
+        /// <param name="id">specified id</param>
+        /// <returns>if find true, otherwise false</returns>
         public async Task<bool> MarkTodoAsCompleted(int id)
         {
             var todo = await _context.TodoItem.FirstOrDefaultAsync(x => x.Id == id);

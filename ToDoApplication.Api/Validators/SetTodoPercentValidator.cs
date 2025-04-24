@@ -5,6 +5,9 @@ namespace ToDoApplication.Api.Validators
 {
     public class SetTodoPercentValidator : AbstractValidator<int>
     {
+        /// <summary>
+        /// Specifies validation rules for the SetTodoPercentRequest model.
+        /// </summary>
         public SetTodoPercentValidator()
         {
             RuleFor(x => x)

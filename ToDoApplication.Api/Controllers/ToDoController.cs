@@ -48,7 +48,7 @@ namespace ToDoApplication.Api.Controllers
         /// <summary>
         /// Get todo by id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">todo id</param>
         /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<GetTodoByIdResponse> GetTodoById(int id)
@@ -63,6 +63,7 @@ namespace ToDoApplication.Api.Controllers
         /// <summary>
         /// Get incoming todos
         /// </summary>
+        /// <param name="dateTime">time value</param>
         /// <returns></returns>
         [HttpGet("incoming")]
         public async Task<ActionResult<List<GetIncomingTodosResponse>>> GetIncomingTodos(DateTime dateTime)
@@ -85,7 +86,7 @@ namespace ToDoApplication.Api.Controllers
         /// <summary>
         /// Create todo
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="request">create todo request model</param>
         /// <returns></returns>
         [HttpPost]
         [Route("")]
@@ -129,8 +130,8 @@ namespace ToDoApplication.Api.Controllers
         /// <summary>
         /// Set todo percent
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="amount"></param>
+        /// <param name="id">todo id</param>
+        /// <param name="amount">todo percent value</param>
         /// <returns></returns>
         [HttpPatch("{id}/percent")]
         public async Task<ApiResponse> SetTodoPercent(int id, int amount)
@@ -150,7 +151,7 @@ namespace ToDoApplication.Api.Controllers
         /// <summary>
         /// Delete todo
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">todo id</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<ApiResponse> DeleteTodo(int id)
@@ -164,7 +165,7 @@ namespace ToDoApplication.Api.Controllers
         /// <summary>
         /// Mark todo as complete
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">todo id</param>
         /// <returns></returns>
         [HttpPut("{id}/done")]
         public async Task<ApiResponse> MarkDoneTodo(int id)

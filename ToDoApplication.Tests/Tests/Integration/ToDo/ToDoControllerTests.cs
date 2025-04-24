@@ -15,8 +15,12 @@ namespace ToDoApplication.Tests.Tests.Integration.ToDo
             _client = factory.CreateClient();
         }
 
+        /// <summary>
+        /// Test for GetAllTodos method Controller
+        /// </summary>
+        /// <returns>200 status code</returns>
         [Fact]
-        public async Task GetAllTodos_ShouldReturnAllTodos_WhenIsAnyTodo()
+        public async Task GetAllTodos_ShouldReturn200StatusCode()
         {
             //arrange
 
@@ -27,6 +31,11 @@ namespace ToDoApplication.Tests.Tests.Integration.ToDo
             Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
         }
 
+
+        /// <summary>
+        /// Test for GetTodoById method Controller
+        /// </summary>
+        /// <returns>true</returns>
         [Fact]
         public async Task CreateTodo_ShouldReturnTrue()
         {

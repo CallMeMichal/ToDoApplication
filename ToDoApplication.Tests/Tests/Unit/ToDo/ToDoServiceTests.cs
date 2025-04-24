@@ -15,6 +15,10 @@ namespace ToDoApplication.Tests.Unit.Services
             _toDoServiceMock = new Mock<IToDoService>();
         }
 
+        /// <summary>
+        /// Test for GetAllTodos method
+        /// </summary>
+        /// <returns>all available todos</returns>
         [Fact]
         public async Task GetAllTodos_ShouldReturnFilledList_WhenIsAnyTodo()
         {
@@ -42,6 +46,10 @@ namespace ToDoApplication.Tests.Unit.Services
             Assert.Equal(expected[0].Title, result[0].Title);
         }
 
+        /// <summary>
+        /// Test for GetTodoById method
+        /// </summary>
+        /// <returns>specified todo</returns>
         [Fact]
         public async Task GetSpecifiedTodo_ShouldReturnSpecifiedTodo_WhenAnyTodo()
         {
@@ -70,6 +78,10 @@ namespace ToDoApplication.Tests.Unit.Services
             Assert.Equal(expectedResponse.CompletePercent, result.CompletePercent);
         }
 
+        /// <summary>
+        /// Test for GetIncomingTodos method
+        /// </summary>
+        /// <returns>list of inc todo</returns>
         [Fact]
         public async Task GetIncomingTodos_ShouldReturnListOfIncomingTodos_WhenAnyTodo()
         {
@@ -112,6 +124,10 @@ namespace ToDoApplication.Tests.Unit.Services
             Assert.Equal(0, result[1].CompletePercent);
         }
 
+        /// <summary>
+        /// Test for CreateTodo method
+        /// </summary>
+        /// <returns>success</returns>
         [Fact]
         public async Task CreateTodo_ShouldReturnSuccessResponse_WhenTodoIsCreatedSuccessfully()
         {
