@@ -1,4 +1,7 @@
 How to open
+Clone project
+
+
 
 Visual Studio
 tools -> command line => develop powershell
